@@ -3,6 +3,14 @@ export default class Project {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
-    this.todos = [];
+    this._todos = [];
+  }
+
+  addTodo(todo) {
+    this._todos.push(todo);
+  }
+
+  get todos() {
+    return this._todos;
   }
 }
