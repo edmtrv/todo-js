@@ -28,6 +28,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "core-js": "^3.4.7"
+    "core-js": "^3.4.7",
+    "uniqid": "^5.2.0"
   }
 }
