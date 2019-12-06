@@ -1,12 +1,11 @@
-import TodoList from './TodoList';
 import uniqid from 'uniqid';
 
-export default class Project {
-  constructor(title, description, dueDate) {
+export default class TodoList {
+  constructor(title, description, dueDate, priority = 'default') {
     this.id = uniqid();
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
-    this._todos = new TodoList();
+    this.priority = priority;
   }
 }
