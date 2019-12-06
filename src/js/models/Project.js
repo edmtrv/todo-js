@@ -1,4 +1,3 @@
-import TodoList from './TodoList';
 import uniqid from 'uniqid';
 
 export default class Project {

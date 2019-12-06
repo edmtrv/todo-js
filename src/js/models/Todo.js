@@ -1,6 +1,6 @@
 import uniqid from 'uniqid';
 
-export default class TodoList {
+export default class Todo {
   constructor(title, description, dueDate, priority = 'default') {
     this.id = uniqid();
     this.title = title;
