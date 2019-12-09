@@ -24,3 +24,5 @@ window.addEventListener('load', () => {
   state.projects.push(defaultProject);
   projectView.renderProjectsList(state.projects);
 });
+
+

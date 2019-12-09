@@ -5,7 +5,7 @@ export const renderProjectsList = (projects) => {
     </ul>
   `;
 
-  document.getElementById('projects').innerHTML = markup;
+  .innerHTML = markup;
 };
 
 const renderProjectItem = (project) => {
