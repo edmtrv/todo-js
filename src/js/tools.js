@@ -1,4 +1,5 @@
 export const elements = {
   projectsList: document.getElementById('projects'),
-  projectModal: document.querySelector('.btn-project-modal')
+  projectModalBtn: document.querySelector('.btn-project-modal'),
+  addProjectBtn: document.querySelector('.btn-add-project')
 };
