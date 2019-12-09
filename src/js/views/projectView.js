@@ -1,7 +1,7 @@
 export const renderProjectsList = (projects) => {
   const markup = `
     <ul class="list-group">
-      ${projects.forEach(project => renderProjects(project))};
+      ${projects.map(project => renderProjectItem(project)).join('')}
     </ul>
   `;
 
