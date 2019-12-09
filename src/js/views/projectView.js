@@ -1,4 +1,4 @@
-export const renderProjects = (projects) => {
+export const renderProjectsList = (projects) => {
   const markup = `
     <ul class="list-group">
       ${projects.forEach(project => renderProjects(project))};

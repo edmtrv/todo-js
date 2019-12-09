@@ -22,5 +22,5 @@ window.addEventListener('load', () => {
   state.projects = [];
   const defaultProject = new Project('Default Project', 'My project for testing purposes');
   state.projects.push(defaultProject);
-  projectView.renderProjects(state.projects);
+  projectView.renderProjectsList(state.projects);
 });
