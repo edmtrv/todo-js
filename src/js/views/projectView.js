@@ -1,3 +1,3 @@
-export const renderProject = (project) => {
+export const renderProjects = (projects) => {
 
 };
