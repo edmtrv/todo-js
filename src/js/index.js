@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
+import { elements } from './tools';
 import Project from './models/Project';
 import Todo from './models/Todo';
 import * as projectView from './views/projectView';

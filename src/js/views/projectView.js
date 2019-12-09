@@ -1,3 +1,5 @@
+import { elements } from './../tools';
+
 export const renderProjectsList = (projects) => {
   const markup = `
     <ul class="list-group">
@@ -5,7 +7,7 @@ export const renderProjectsList = (projects) => {
     </ul>
   `;
 
-  .innerHTML = markup;
+  elements.projectsList.innerHTML = markup;
 };
 
 const renderProjectItem = (project) => {
