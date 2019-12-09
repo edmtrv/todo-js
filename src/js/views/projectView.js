@@ -7,3 +7,11 @@ export const renderProjects = (projects) => {
 
   document.getElementById('projects').innerHTML = markup;
 };
+
+const renderProjectItem = (project) => {
+  return `
+    <button type="button" class="list-group-item list-group-item-action">
+      ${project.title}
+    </button>
+  `;
+};
