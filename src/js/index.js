@@ -24,6 +24,9 @@ window.addEventListener('load', () => {
   const defaultProject = new Project('Default Project', 'My project for testing purposes');
   state.projects.push(defaultProject);
   projectView.renderProjectsList(state.projects);
+  projectView.createProjectModal();
 });
 
+// elements.projectModalBtn.addEventListener('click', e => {
 
+// })
