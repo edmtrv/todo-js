@@ -38,3 +38,4 @@ elements.projectForm.addEventListener('submit', e => {
   projectView.renderProjectsList(state.projects);
   e.target.reset();
 });
+
