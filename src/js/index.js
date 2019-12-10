@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
@@ -27,6 +28,13 @@ window.addEventListener('load', () => {
   projectView.renderProjectsList(state.projects);
 });
 
-// elements.projectModalBtn.addEventListener('click', e => {
-
-// })
+elements.projectForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const title = e.target.title.value;
+  const description = e.target.description.value;
+  const project = new Project(title, description);
+  state.projects.push(project);
+  $('#project-modal').modal('hide');
+  projectView.renderProjectsList(state.projects);
+  e.target.reset();
+});
