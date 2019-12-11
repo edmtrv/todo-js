@@ -39,3 +39,12 @@ elements.projectForm.addEventListener('submit', e => {
   e.target.reset();
 });
 
+const projectController = () => {
+  const id = window.location.hash.replace('#', '');
+
+  const activeProject = state.projects.find(project => project.id === id);
+
+};
+
+['hashchange', 'load'].forEach(e => window.addEventListener(e, projectController));
+
