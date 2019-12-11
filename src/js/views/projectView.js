@@ -16,7 +16,7 @@ export const showProjectDetails = (project) => {
     <button class="btn btn-primary" data-project="${project.id}">Add Todo</button>
   `;
 
-  elements.projectDetails.appendChild(markup)
+  elements.projectDetails.innerHTML = markup;
 };
 
 const renderProjectItem = (project) => {

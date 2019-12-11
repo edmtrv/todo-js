@@ -43,7 +43,7 @@ const projectController = () => {
   const id = window.location.hash.replace('#', '');
 
   const activeProject = state.projects.find(project => project.id === id);
-
+  projectView.showProjectDetails(activeProject);
 };
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, projectController));
