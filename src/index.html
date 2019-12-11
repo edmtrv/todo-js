@@ -85,6 +85,19 @@
               <input type="text" name="description" class="form-control" id="description"
                 aria-describedby="todo-description">
             </div>
+            <div class="from-group">
+              <label for="due-date">Due Date</label>
+              <input type="date" name="due-date" id="due-date" class="form-control" aria-describedby="todo-due-date">
+            </div>
+            <div class="form-group">
+              <label for="priority">Priority</label>
+              <select name="priority" id="priority" class="form-control">
+                <option value="">--Choose priority--</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
