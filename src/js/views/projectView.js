@@ -13,7 +13,7 @@ export const renderProjectsList = (projects) => {
 export const showProjectDetails = (project) => {
   const markup = `
     <p>${project.description}</p>
-    <button class="btn btn-primary" data-project="${project.id}">Add Todo</button>
+    <button class="btn btn-primary" data-project="${project.id}" data-toggle="modal" data-target="#todo-modal">Add Todo</button>
   `;
 
   elements.projectDetails.innerHTML = markup;
