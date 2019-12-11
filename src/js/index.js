@@ -48,5 +48,13 @@ const projectController = () => {
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, projectController));
 
+elements.todoForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const title = e.target.title.value;
+  const description = e.target.description.value;
+  console.log(title, description);
+  // const todo = new Todo(title, description);
 
-
+  $('#todo-modal').modal('hide');
+  e.target.reset();
+});
