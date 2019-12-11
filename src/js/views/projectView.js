@@ -12,8 +12,8 @@ export const renderProjectsList = (projects) => {
 
 const renderProjectItem = (project) => {
   return `
-    <button type="button" class="list-group-item list-group-item-action">
+    <a href=#${project.id} class="list-group-item list-group-item-action">
       ${project.title}
-    </button>
+    </a>
   `;
 };
