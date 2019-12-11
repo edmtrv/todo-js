@@ -50,10 +50,14 @@ const projectController = () => {
 
 elements.todoForm.addEventListener('submit', e => {
   e.preventDefault();
-  const title = e.target.title.value;
-  const description = e.target.description.value;
-  console.log(title, description);
-  // const todo = new Todo(title, description);
+  const id = window.location.hash.replace('#', '');
+
+  const [title, description, dueDate, priority] = [...e.target.elements].map(el => el.value);
+  const todo = new Todo(title, description, dueDate, priority);
+
+  const project = state.projects.find(project => project.id === id);
+  project.addTodo(todo);
+  projectView.renderTodosList(project);
 
   $('#todo-modal').modal('hide');
   e.target.reset();
