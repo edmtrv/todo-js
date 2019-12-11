@@ -1,4 +1,5 @@
 export const elements = {
   projectsList: document.getElementById('projects-list'),
-  projectForm: document.querySelector('.project-form')
+  projectForm: document.querySelector('.project-form'),
+  projectDetails: document.querySelector('.project-details')
 };

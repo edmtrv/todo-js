@@ -10,6 +10,15 @@ export const renderProjectsList = (projects) => {
   elements.projectsList.innerHTML = markup;
 };
 
+export const showProjectDetails = (project) => {
+  const markup = `
+    <p>${project.description}</p>
+    <button class="btn btn-primary" data-project="${project.id}">Add Todo</button>
+  `;
+
+  elements.projectDetails.appendChild(markup)
+};
+
 const renderProjectItem = (project) => {
   return `
     <a href=#${project.id} class="list-group-item list-group-item-action">
