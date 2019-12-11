@@ -19,10 +19,40 @@ export const showProjectDetails = (project) => {
   elements.projectDetails.innerHTML = markup;
 };
 
+export const renderTodosList = (project) => {
+  const markup = `
+    <div class="accordion" id="todos-accordion">
+      ${project.todos.forEach((todo, i) => renderTodoItem(todo, i)).join('')}
+    </div>
+  `;
+
+  elements.todosList.innerHTML = markup;
+};
+
 const renderProjectItem = (project) => {
   return `
     <a href=#${project.id} class="list-group-item list-group-item-action">
       ${project.title}
     </a>
+  `;
+};
+
+const renderTodoItem = (todo, idx) => {
+  const markup = `
+    <div class="card">
+      <div class="card-header" id="heading-${idx}">
+        <h2 class="mb-0>
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="collapse-${idx}" aria-expand="true" aria-controls="collapse$-{idx}">
+            ${todo.title}
+          </button>
+        </h2>
+      </div>
+
+      <div id="collapse-${idx}" class="collapse show" aria-labelledby="heading-${idx}" data-parent="todos-accordion">
+        <div class="card-body">
+          ${todo.description}
+        </div>
+      </div>
+    </div>
   `;
 };
