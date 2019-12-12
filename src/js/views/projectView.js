@@ -46,6 +46,9 @@ const renderTodoItem = (todo, idx) => {
             ${todo.title}
           </button>
         </h2>
+        <button type="button" class="btn btn-success btn-complete-todo">Complete</button>
+        <button type="button" class="btn btn-warning btn-edit-todo">Edit</button>
+        <button type="button" class="btn btn-danger btn-delete-todo">Remove</button>
       </div>
 
       <div id="collapse-${idx}" class="collapse" aria-labelledby="heading-${idx}" data-parent="#todos-accordion">
