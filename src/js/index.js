@@ -18,8 +18,8 @@ window.addEventListener('load', () => {
 
 elements.projectForm.addEventListener('submit', e => {
   e.preventDefault();
-  const title = e.target.title.value;
-  const description = e.target.description.value;
+
+  const [title, description] = e.target.elements.map(el => el.value);
   const project = new Project(title, description);
   state.projects.push(project);
   $('#project-modal').modal('hide');
