@@ -5,19 +5,15 @@ export default class Project {
     this.id = uniqid();
     this.title = title;
     this.description = description;
-    this._todos = [];
+    this.todos = [];
   }
 
   addTodo(todo) {
-    this._todos.push(todo);
+    this.todos.push(todo);
   }
 
   removeTodo(id) {
-    const index = this._todos.findIndex(todo => todo.id === id);
-    this._todos.splice(index, 1);
-  }
-
-  get todos() {
-    return this._todos;
+    const index = this.todos.findIndex(todo => todo.id === id);
+    this.todos.splice(index, 1);
   }
 }
