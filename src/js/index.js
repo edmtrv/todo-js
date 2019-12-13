@@ -2,10 +2,10 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
-import { elements } from './tools';
+import { elements } from './helpers';
 import Project from './models/Project';
 import Todo from './models/Todo';
-import * as projectView from './views/projectView';
+import * as projectView from './views/ProjectView';
 
 const state = {};
 
@@ -50,3 +50,18 @@ elements.todoForm.addEventListener('submit', e => {
   $('#todo-modal').modal('hide');
   e.target.reset();
 });
+
+
+elements.todosList.addEventListener('click', e => {
+  if (e.target.matches('.btn-complete-todo')) {
+    controlCompleteTodo(e);
+  } else if (e.target.matches('.btn-edit-todo')) {
+    console.log('edit');
+  } else if (e.target.matches('.btn-remove-todo')) {
+    console.log('remove');
+  }
+});
+
+const controlCompleteTodo = (e) => {
+  console.log(e);
+};
