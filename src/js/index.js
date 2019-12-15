@@ -5,26 +5,34 @@ import '../style.css';
 import { elements } from './helpers';
 import Project from './models/Project';
 import Todo from './models/Todo';
-import * as projectView from './views/ProjectView';
+import ProjectView from './views/ProjectView';
 
 const state = {};
+
+const app = () => {
+  ProjectView.addProject(handleAddProject);
+
+};
+
+const handleAddProject = (title, description) => {
+  const project = new Project(title, description);
+  state.projects.push(project);
+  onProjectListChange();
+};
+
+const handleSelectProject = () => {
+
+};
+
+const onProjectListChange = () => {
+  ProjectView.renderProjectsList(state.projects);
+};
 
 window.addEventListener('load', () => {
   state.projects = [];
   const defaultProject = new Project('Default Project', 'My project for testing purposes');
   state.projects.push(defaultProject);
   projectView.renderProjectsList(state.projects);
-});
-
-elements.projectForm.addEventListener('submit', e => {
-  e.preventDefault();
-
-  const [title, description] = e.target.elements.map(el => el.value);
-  const project = new Project(title, description);
-  state.projects.push(project);
-  $('#project-modal').modal('hide');
-  projectView.renderProjectsList(state.projects);
-  e.target.reset();
 });
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {

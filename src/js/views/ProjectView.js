@@ -1,4 +1,4 @@
-import { qs } from '../helpers';
+import { qs, $on } from '../helpers';
 
 export default ProjectView {
   renderProjectsList(projects) {
@@ -9,6 +9,16 @@ export default ProjectView {
   `;
 
     qs('.projects-list').innerHTML = markup;
+  }
+
+  addProject(handler) {
+    $on(qs('project-form'), 'submit', e => {
+      e.preventDefault();
+      const [title, description] = e.target.elements.map(el => el.value);
+      handler(title, description);
+      $('#project-modal').modal('hide');
+      e.target.reset();
+    });
   }
 
   _renderProjectItem(project) {
