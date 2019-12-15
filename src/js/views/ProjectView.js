@@ -1,14 +1,25 @@
-import { elements } from '../helpers';
+import { qs } from '../helpers';
 
-export const renderProjectsList = (projects) => {
-  const markup = `
+export default ProjectView {
+  renderProjectsList(projects) {
+    const markup = `
     <ul class="list-group">
-      ${projects.map(project => renderProjectItem(project)).join('')}
+      ${projects.map(project => _renderProjectItem(project)).join('')}
     </ul>
   `;
 
-  elements.projectsList.innerHTML = markup;
-};
+    qs('.projects-list').innerHTML = markup;
+  }
+
+  _renderProjectItem(project) {
+    return `
+      <a href=#${project.id} class="list-group-item list-group-item-action">
+        ${project.title}
+      </a>
+    `;
+  }
+
+}
 
 export const showProjectDetails = (project) => {
   const markup = `
@@ -16,7 +27,7 @@ export const showProjectDetails = (project) => {
     <button class="btn btn-primary" data-project="${project.id}" data-toggle="modal" data-target="#todo-modal">Add Todo</button>
   `;
 
-  elements.projectDetails.innerHTML = markup;
+  qs('.project-details').innerHTML = markup;
 };
 
 export const renderTodosList = (project) => {
@@ -26,15 +37,11 @@ export const renderTodosList = (project) => {
     </div>
   `;
 
-  elements.todosList.innerHTML = markup;
+  qs('.todos').innerHTML = markup;
 };
 
 const renderProjectItem = (project) => {
-  return `
-    <a href=#${project.id} class="list-group-item list-group-item-action">
-      ${project.title}
-    </a>
-  `;
+
 };
 
 const renderTodoItem = (todo, idx) => {

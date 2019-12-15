@@ -1,7 +1,9 @@
 export const elements = {
-  projectsList: document.querySelector('.projects-list'),
+  projectsList: document.querySelector(),
   projectForm: document.querySelector('.project-form'),
-  projectDetails: document.querySelector('.project-details'),
-  todosList: document.querySelector('.todos'),
+  projectDetails: document.querySelector(),
+  todosList: document.querySelector(),
   todoForm: document.querySelector('.todo-form'),
 };
+
+export const qs = (selector, scope) => (document || scope).querySelector(selector);
