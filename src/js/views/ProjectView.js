@@ -20,7 +20,7 @@ export default class ProjectView {
     qs('.project-details').innerHTML = markup;
   }
 
-  addProject(handler) {
+  bindAddProject(handler) {
     $on(qs('project-form'), 'submit', e => {
       e.preventDefault();
       const [title, description] = e.target.elements.map(el => el.value);
@@ -30,7 +30,7 @@ export default class ProjectView {
     });
   }
 
-  selectProject(handler) {
+  bindSelectProject(handler) {
     $on(qs('.projects-list'), 'click', e => {
       e.preventDefault();
       if (e.target.matches('[type="button"]')) {

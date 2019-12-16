@@ -16,8 +16,8 @@ const app = () => {
   state.projects.push(defaultProject);
   projectView.renderProjectsList(state.projects);
 
-  ProjectView.addProject(handleAddProject);
-  ProjectView.selectProject(handleSelectProject);
+  ProjectView.bindAddProject(handleAddProject);
+  ProjectView.bindSelectProject(handleSelectProject);
 };
 
 const handleAddProject = (title, description) => {
