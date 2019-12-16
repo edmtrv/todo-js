@@ -34,15 +34,14 @@ export default class ProjectView {
     $on(qs('.projects-list'), 'click', e => {
       e.preventDefault();
       if (e.target.matches('[type="button"]')) {
-        const id = e.target.dataset.projectID;
-        handler(id);
+        handler(e.target.dataset.id);
       }
     });
   }
 
   _renderProjectItem(project) {
     return `
-      <button type="button" data-projectID="${project.id}" class="list-group-item list-group-item-action">
+      <button type="button" data-id="${project.id}" class="list-group-item list-group-item-action">
         ${project.title}
       </buttoon>
     `;
