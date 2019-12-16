@@ -4,7 +4,7 @@ export default class TodoView {
   renderTodosList(project) {
     const markup = `
       <div class="accordion" id="todos-accordion">
-        ${project.todos.map((todo, i) => renderTodoItem(todo, i)).join('')}
+        ${project.todos.map((todo, i) => this._renderTodoItem(todo, i)).join('')}
       </div>
     `;
 

@@ -4,7 +4,7 @@ export default class ProjectView {
   renderProjectsList(projects) {
     const markup = `
       <ul class="list-group">
-        ${projects.map(project => _renderProjectItem(project)).join('')}
+        ${projects.map(project => this._renderProjectItem(project)).join('')}
       </ul>
     `;
 
