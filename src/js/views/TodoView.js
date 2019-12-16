@@ -1,4 +1,4 @@
-import { $on, qs } from '..helpers/';
+import { $on, qs } from '../helpers';
 
 export default class TodoView {
   renderTodosList(project) {
