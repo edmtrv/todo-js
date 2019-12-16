@@ -3,10 +3,10 @@ import { qs, $on } from '../helpers';
 export default ProjectView {
   renderProjectsList(projects) {
     const markup = `
-    <ul class="list-group">
-      ${projects.map(project => _renderProjectItem(project)).join('')}
-    </ul>
-  `;
+      <ul class="list-group">
+        ${projects.map(project => _renderProjectItem(project)).join('')}
+      </ul>
+    `;
 
     qs('.projects-list').innerHTML = markup;
   }
