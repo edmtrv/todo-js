@@ -2,7 +2,6 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
-import { elements } from './helpers';
 import Project from './models/Project';
 import Todo from './models/Todo';
 import ProjectView from './views/ProjectView';
@@ -11,7 +10,7 @@ const state = {};
 
 const app = () => {
   ProjectView.addProject(handleAddProject);
-
+  ProjectView.selectProject(handleSelectProject);
 };
 
 const handleAddProject = (title, description) => {
@@ -20,8 +19,10 @@ const handleAddProject = (title, description) => {
   onProjectListChange();
 };
 
-const handleSelectProject = () => {
-
+const handleSelectProject = (id) => {
+  const activeProject = state.projects.find(project => project.id === id);
+  projectView.renderProjectDetails(activeProject);
+  // render project's todos
 };
 
 const onProjectListChange = () => {
@@ -34,13 +35,6 @@ window.addEventListener('load', () => {
   state.projects.push(defaultProject);
   projectView.renderProjectsList(state.projects);
 });
-
-['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {
-  const id = window.location.hash.replace('#', '');
-
-  const activeProject = state.projects.find(project => project.id === id);
-  projectView.showProjectDetails(activeProject);
-}));
 
 elements.todoForm.addEventListener('submit', e => {
   e.preventDefault();

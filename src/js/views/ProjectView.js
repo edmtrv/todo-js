@@ -11,6 +11,15 @@ export default ProjectView {
     qs('.projects-list').innerHTML = markup;
   }
 
+  renderProjectDetails(project) {
+    const markup = `
+      <p>${project.description}</p>
+      <button class="btn btn-primary" data-project="${project.id}" data-toggle="modal" data-target="#todo-modal">Add Todo</button>
+    `;
+
+    qs('.project-details').innerHTML = markup;
+  }
+
   addProject(handler) {
     $on(qs('project-form'), 'submit', e => {
       e.preventDefault();
@@ -21,24 +30,25 @@ export default ProjectView {
     });
   }
 
+  selectProject(handler) {
+    $on(qs('.projects-list'), 'click', e => {
+      e.preventDefault();
+      if (e.target.matches('[type="button"]')) {
+        const id = e.target.dataset.projectID;
+        handler(id);
+      }
+    });
+  }
+
   _renderProjectItem(project) {
     return `
-      <a href=#${project.id} class="list-group-item list-group-item-action">
+      <button type="button" data-projectID="${project.id}" class="list-group-item list-group-item-action">
         ${project.title}
-      </a>
+      </buttoon>
     `;
   }
 
 }
-
-export const showProjectDetails = (project) => {
-  const markup = `
-    <p>${project.description}</p>
-    <button class="btn btn-primary" data-project="${project.id}" data-toggle="modal" data-target="#todo-modal">Add Todo</button>
-  `;
-
-  qs('.project-details').innerHTML = markup;
-};
 
 export const renderTodosList = (project) => {
   const markup = `
