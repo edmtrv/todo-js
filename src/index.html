@@ -12,7 +12,103 @@
   <nav class="navbar navbar-light navbar-expand-lg">
     <a href="#" class="navbar-brand">TodoJs</a>
   </nav>
-  <div id="content"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <section class="d-flex justify-content-around project-list-titlebar">
+          <h4>All Projects</h4>
+          <button class="btn btn-primary btn-project-modal" data-toggle="modal" data-target="#project-modal"
+            type="button">New</button>
+        </section>
+        <section class="projects-list"></section>
+      </div>
+      <div class="col-sm-9">
+        <section class="d-flex justify-content-around project-details"></section>
+        <section class="todos"></section>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Project modal -->
+  <div class="modal fade" id="project-modal" tabindex="-1" role="dialog" aria-labelledby="project-modal-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="project-modal-label">Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="project-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" class="form-control" id="title" aria-describedby="project-title">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" name="description" class="form-control" id="description"
+                aria-describedby="project-description">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Todo modal -->
+  <div class="modal fade" id="todo-modal" tabindex="-1" role="dialog" aria-labelledby="todo-modal-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="todo-modal-label">Todo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="todo-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" class="form-control" id="title" aria-describedby="todo-title">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" name="description" class="form-control" id="description"
+                aria-describedby="todo-description">
+            </div>
+            <div class="from-group">
+              <label for="due-date">Due Date</label>
+              <input type="date" name="due-date" id="due-date" class="form-control" aria-describedby="todo-due-date">
+            </div>
+            <div class="form-group">
+              <label for="priority">Priority</label>
+              <select name="priority" id="priority" class="form-control">
+                <option value="">--Choose priority--</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Todo</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
 </html>

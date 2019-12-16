@@ -1,20 +1,67 @@
+import $ from 'jquery';
+import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
 import Project from './models/Project';
 import Todo from './models/Todo';
+import ProjectView from './views/ProjectView';
 
 const state = {};
-state.projects = [];
 
-// const p1 = new Project('My first project', 'My project for testing purposes');
-// const t1 = new Todo('My first todo', 'Doing something cool', '20191112');
-// const t2 = new Todo('My second todo', 'A lot of work', '20191209');
-// const t3 = new Todo('My third todo', 'Doing something even better', '20191125');
+const app = () => {
+  ProjectView.addProject(handleAddProject);
+  ProjectView.selectProject(handleSelectProject);
+};
 
-// p1.addTodo(t1);
-// p1.addTodo(t2);
-// p1.addTodo(t3);
+const handleAddProject = (title, description) => {
+  const project = new Project(title, description);
+  state.projects.push(project);
+  onProjectListChange();
+};
 
-// state.projects.push(p1);
+const handleSelectProject = (id) => {
+  const activeProject = state.projects.find(project => project.id === id);
+  projectView.renderProjectDetails(activeProject);
+  // render project's todos
+};
 
-// console.dir(state);
+const onProjectListChange = () => {
+  ProjectView.renderProjectsList(state.projects);
+};
+
+window.addEventListener('load', () => {
+  state.projects = [];
+  const defaultProject = new Project('Default Project', 'My project for testing purposes');
+  state.projects.push(defaultProject);
+  projectView.renderProjectsList(state.projects);
+});
+
+elements.todoForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const id = window.location.hash.replace('#', '');
+
+  const [title, description, dueDate, priority] = [...e.target.elements].map(el => el.value);
+  const todo = new Todo(title, description, dueDate, priority);
+
+  const project = state.projects.find(project => project.id === id);
+  project.addTodo(todo);
+  projectView.renderTodosList(project);
+
+  $('#todo-modal').modal('hide');
+  e.target.reset();
+});
+
+
+elements.todosList.addEventListener('click', e => {
+  if (e.target.matches('.btn-complete-todo')) {
+    controlCompleteTodo(e);
+  } else if (e.target.matches('.btn-edit-todo')) {
+    console.log('edit');
+  } else if (e.target.matches('.btn-remove-todo')) {
+    console.log('remove');
+  }
+});
+
+const controlCompleteTodo = (e) => {
+  console.log(e);
+};
