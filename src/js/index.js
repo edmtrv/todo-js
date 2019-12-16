@@ -2,13 +2,20 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
+import { $on } from './helpers';
 import Project from './models/Project';
 import Todo from './models/Todo';
 import ProjectView from './views/ProjectView';
+import TodoView from './views/TodoView';
 
 const state = {};
 
 const app = () => {
+  state.projects = [];
+  const defaultProject = new Project('Default Project', 'My project for testing purposes');
+  state.projects.push(defaultProject);
+  projectView.renderProjectsList(state.projects);
+
   ProjectView.addProject(handleAddProject);
   ProjectView.selectProject(handleSelectProject);
 };
@@ -21,20 +28,17 @@ const handleAddProject = (title, description) => {
 
 const handleSelectProject = (id) => {
   const activeProject = state.projects.find(project => project.id === id);
-  projectView.renderProjectDetails(activeProject);
-  // render project's todos
+  ProjectView.renderProjectDetails(activeProject);
+  TodoView.renderTodosList(activeProject);
 };
 
 const onProjectListChange = () => {
   ProjectView.renderProjectsList(state.projects);
 };
 
-window.addEventListener('load', () => {
-  state.projects = [];
-  const defaultProject = new Project('Default Project', 'My project for testing purposes');
-  state.projects.push(defaultProject);
-  projectView.renderProjectsList(state.projects);
-});
+$on(window, 'load', app);
+
+// Code for refactoring below
 
 elements.todoForm.addEventListener('submit', e => {
   e.preventDefault();
