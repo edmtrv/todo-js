@@ -1,4 +1,5 @@
 import { qs, $on } from '../helpers';
+import $ from 'jquery';
 
 export default class ProjectView {
   renderProjectsList(projects) {
@@ -23,7 +24,8 @@ export default class ProjectView {
   bindAddProject(handler) {
     $on(qs('.project-form'), 'submit', e => {
       e.preventDefault();
-      const [title, description] = e.target.elements.map(el => el.value);
+      const [title, description] = Array.from(e.target.elements)
+        .map(el => el.value);
       handler(title, description);
       $('#project-modal').modal('hide');
       e.target.reset();
