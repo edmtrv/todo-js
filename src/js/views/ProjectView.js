@@ -21,7 +21,7 @@ export default class ProjectView {
   }
 
   bindAddProject(handler) {
-    $on(qs('project-form'), 'submit', e => {
+    $on(qs('.project-form'), 'submit', e => {
       e.preventDefault();
       const [title, description] = e.target.elements.map(el => el.value);
       handler(title, description);
