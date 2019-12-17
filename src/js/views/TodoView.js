@@ -29,17 +29,24 @@ export default class TodoView {
     return `
       <div class="card">
         <div class="card-header" id="heading-${idx}">
-          <h2 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse-${idx}" aria-expand="true" aria-controls="collapse$-{idx}">
-              ${todo.title}
-            </button>
-          </h2>
-          <button type="button" class="btn btn-success btn-complete-todo">Complete</button>
-          <button type="button" class="btn btn-warning btn-edit-todo">Edit</button>
-          <button type="button" class="btn btn-danger btn-remove-todo">Remove</button>
+          <div class="row">
+            <div class="col-8">
+              <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse-${idx}" aria-expand="true" aria-controls="collapse$-{idx}">
+                  ${todo.title}
+                </button>
+              </h2>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn btn-success btn-toggle">Toggle</button>
+              <button type="button" class="btn btn-secondary btn-edit">Edit</button>
+              <button type="button" class="btn btn-danger btn-edit">Remove</button>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div id="collapse-${idx}" class="collapse" aria-labelledby="heading-${idx}" data-parent="#todos-accordion">
+      <div id="collapse-${idx}" class="collapse" aria-labelledby="heading-${idx}" data-parent="#todos-accordion">
           <div class="card-body">
             ${todo.description}
           </div>
