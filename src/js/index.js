@@ -21,12 +21,13 @@ const app = () => {
 
   pView.bindAddProject(handleAddProject);
   pView.bindSelectProject(handleSelectProject);
+  tView.bindAddTodo(handleAddTodo);
 };
 
 const handleAddProject = (title, description) => {
   const project = new Project(title, description);
   state.projects.push(project);
-  onProjectListChange();
+  pView.renderProjectsList(state.projects);
 };
 
 const handleSelectProject = (id) => {
@@ -35,28 +36,29 @@ const handleSelectProject = (id) => {
   tView.renderTodosList(activeProject);
 };
 
-const onProjectListChange = () => {
-  pView.renderProjectsList(state.projects);
+const handleAddTodo = (projectId, title, description, dueDate, priority) => {
+  const todo = new Todo(title, description, dueDate, priority);
+  const project = state.projects.find(project => project.id === projectId);
+  project.addTodo(todo);
+  tView.renderTodosList(project);
+};
+
+const handleToggleTodo = (id) => {
+
+};
+
+const handleEditTodo = (id) => {
+
+};
+
+const handleRemoveTodo = (id) => {
+
 };
 
 $on(window, 'load', app);
 
 // Code for refactoring below
 
-// elements.todoForm.addEventListener('submit', e => {
-//   e.preventDefault();
-//   const id = window.location.hash.replace('#', '');
-
-//   const [title, description, dueDate, priority] = [...e.target.elements].map(el => el.value);
-//   const todo = new Todo(title, description, dueDate, priority);
-
-//   const project = state.projects.find(project => project.id === id);
-//   project.addTodo(todo);
-//   projectView.renderTodosList(project);
-
-//   $('#todo-modal').modal('hide');
-//   e.target.reset();
-// });
 
 
 // elements.todosList.addEventListener('click', e => {

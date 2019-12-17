@@ -1,4 +1,5 @@
-import { $on, qs } from '../helpers';
+import { qs, $on } from '../helpers';
+import $ from 'jquery';
 
 export default class TodoView {
   renderTodosList(project) {
@@ -9,7 +10,20 @@ export default class TodoView {
     `;
 
     qs('.todos').innerHTML = markup;
-  };
+  }
+
+  bindAddTodo(handler) {
+    $on(qs('.todo-form'), 'submit', e => {
+      e.preventDefault();
+      const projectId = qs('[data-project]').dataset.project;
+      const [title, description, dueDate, priority] = Array.from(e.target.elements).map(el => el.value);
+
+      handler(projectId, title, description, dueDate, priority);
+
+      $('#todo-modal').modal('hide');
+      e.target.reset();
+    });
+  }
 
   _renderTodoItem(todo, idx) {
     return `
@@ -32,5 +46,5 @@ export default class TodoView {
         </div>
       </div>
     `;
-  };
+  }
 }
