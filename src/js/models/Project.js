@@ -13,7 +13,6 @@ export default class Project {
   }
 
   removeTodo(id) {
-    const index = this.todos.findIndex(todo => todo.id === id);
-    this.todos.splice(index, 1);
+    this.todos = this.todos.filter(todo => todo.id !== id);
   }
 }

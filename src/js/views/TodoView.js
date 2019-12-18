@@ -41,6 +41,16 @@ export default class TodoView {
     });
   }
 
+  bindRemoveTodo(handler) {
+    $on(qs('.todos'), 'click', e => {
+      if (e.target.matches('.btn-remove')) {
+        handler(e.target.dataset.id);
+        const card = e.target.closest('.card');
+        card.parentNode.removeChild(card);
+      }
+    });
+  }
+
   _renderTodoItem(todo, idx) {
     return `
       <div class="card">
@@ -56,7 +66,7 @@ export default class TodoView {
             <div class="col-4">
               <button type="button" data-id="${todo.id}" class="btn btn-success btn-toggle">Done</button>
               <button type="button" data-id="${todo.id}" class="btn btn-secondary btn-edit">Edit</button>
-              <button type="button" data-id="${todo.id}" class="btn btn-danger btn-edit">Remove</button>
+              <button type="button" data-id="${todo.id}" class="btn btn-danger btn-remove">Remove</button>
             </div>
           </div>
         </div>

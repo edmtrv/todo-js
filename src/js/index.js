@@ -14,7 +14,7 @@ const tView = new TodoView();
 
 const app = () => {
   state.projects = [];
-  const defaultProject = new Project('Default Project', 'My project for testing purposes');
+  const defaultProject = new Project('Default Project', 'Random todos go here');
   state.projects.push(defaultProject);
   pView.renderProjectsList(state.projects);
 
@@ -22,6 +22,7 @@ const app = () => {
   pView.bindSelectProject(handleSelectProject);
   tView.bindAddTodo(handleAddTodo);
   tView.bindToggleTodo(handleToggleTodo);
+  tView.bindRemoveTodo(handleRemoveTodo);
 };
 
 const handleAddProject = (title, description) => {
@@ -44,13 +45,7 @@ const handleAddTodo = (projectId, title, description, dueDate, priority) => {
 };
 
 const handleToggleTodo = (id) => {
-  let todo;
-  console.log(state.projects);
-  for (let project of state.projects) {
-    todo = project.todos.find(td => td.id === id);
-    if (todo) break;
-  };
-
+  const [todo, _] = _findTodoById(id);
   todo.toggleTodo();
   return todo.completed;
 };
@@ -60,25 +55,20 @@ const handleEditTodo = (id) => {
 };
 
 const handleRemoveTodo = (id) => {
+  const [todo, project] = _findTodoById(id);
 
+  if (todo) project.removeTodo(todo.id);
+};
+
+const _findTodoById = (id) => {
+  let todo;
+
+  for (let project of state.projects) {
+    todo = project.todos.find(td => td.id === id);
+    if (todo) {
+      return [todo, project];
+    }
+  };
 };
 
 $on(window, 'load', app);
-
-// Code for refactoring below
-
-
-
-// elements.todosList.addEventListener('click', e => {
-//   if (e.target.matches('.btn-complete-todo')) {
-//     controlCompleteTodo(e);
-//   } else if (e.target.matches('.btn-edit-todo')) {
-//     console.log('edit');
-//   } else if (e.target.matches('.btn-remove-todo')) {
-//     console.log('remove');
-//   }
-// });
-
-// const controlCompleteTodo = (e) => {
-//   console.log(e);
-// };
