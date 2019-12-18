@@ -21,6 +21,7 @@ const app = () => {
   pView.bindAddProject(handleAddProject);
   pView.bindSelectProject(handleSelectProject);
   tView.bindAddTodo(handleAddTodo);
+  tView.bindToggleTodo(handleToggleTodo);
 };
 
 const handleAddProject = (title, description) => {
@@ -43,7 +44,15 @@ const handleAddTodo = (projectId, title, description, dueDate, priority) => {
 };
 
 const handleToggleTodo = (id) => {
+  let todo;
+  console.log(state.projects);
+  for (let project of state.projects) {
+    todo = project.todos.find(td => td.id === id);
+    if (todo) break;
+  };
 
+  todo.toggleTodo();
+  return todo.completed;
 };
 
 const handleEditTodo = (id) => {
