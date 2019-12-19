@@ -14,7 +14,7 @@ export default class ProjectView {
 
   renderProjectDetails(project) {
     const markup = `
-      <p class="mt-2">${project.description}</p>
+      <p>${project.description}</p>
       <button class="btn btn-primary" data-project="${project.id}" data-toggle="modal" data-target="#todo-modal">Add Todo</button>
     `;
 

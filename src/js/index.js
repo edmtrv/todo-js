@@ -9,41 +9,44 @@ import TodoView from './views/TodoView';
 
 const state = {};
 
-const pView = new ProjectView();
-const tView = new TodoView();
+const projectView = new ProjectView();
+const todoView = new TodoView();
 
 const app = () => {
   state.projects = [];
   const defaultProject = new Project('Default Project', 'Random todos go here');
   state.projects.push(defaultProject);
-  pView.renderProjectsList(state.projects);
 
-  pView.bindAddProject(handleAddProject);
-  pView.bindSelectProject(handleSelectProject);
-  tView.bindAddTodo(handleAddTodo);
-  tView.bindToggleTodo(handleToggleTodo);
-  tView.bindRemoveTodo(handleRemoveTodo);
-  tView.bindClickEdit(handleClickEdit);
-  tView.bindEditTodo(handleEditTodo);
+  projectView.bindAddProject(handleAddProject);
+  projectView.bindSelectProject(handleSelectProject);
+  todoView.bindAddTodo(handleAddTodo);
+  todoView.bindToggleTodo(handleToggleTodo);
+  todoView.bindRemoveTodo(handleRemoveTodo);
+  todoView.bindClickEdit(handleClickEdit);
+  todoView.bindEditTodo(handleEditTodo);
+
+  projectView.renderProjectsList(state.projects);
+  projectView.renderProjectDetails(defaultProject);
+  todoView.renderTodosList(defaultProject);
 };
 
 const handleAddProject = (title, description) => {
   const project = new Project(title, description);
   state.projects.push(project);
-  pView.renderProjectsList(state.projects);
+  projectView.renderProjectsList(state.projects);
 };
 
 const handleSelectProject = (id) => {
   const activeProject = state.projects.find(project => project.id === id);
-  pView.renderProjectDetails(activeProject);
-  tView.renderTodosList(activeProject);
+  projectView.renderProjectDetails(activeProject);
+  todoView.renderTodosList(activeProject);
 };
 
 const handleAddTodo = (projectId, todoParams) => {
   const todo = new Todo(...todoParams);
   const project = state.projects.find(project => project.id === projectId);
   project.addTodo(todo);
-  tView.renderTodosList(project);
+  todoView.renderTodosList(project);
 };
 
 const handleToggleTodo = (id) => {
@@ -60,7 +63,7 @@ const handleClickEdit = (id) => {
 const handleEditTodo = (id, todoParams) => {
   const [todo, project] = _findTodoById(id);
   todo.editTodo(...todoParams);
-  tView.renderTodosList(project);
+  todoView.renderTodosList(project);
 };
 
 const handleRemoveTodo = (id) => {
