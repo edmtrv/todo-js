@@ -2,6 +2,18 @@ import { qs, $on } from '../helpers';
 import $ from 'jquery';
 
 export default class TodoView {
+  constructor() {
+    $('#todo-modal').on('hidden.bs.modal', e => {
+      const todoForm = qs('.todo-form');
+      $('#todo-modal').off('shown.bs.modal');
+      todoForm.classList.remove('edit');
+      todoForm.reset();
+      if (todoForm.contains(qs('input[type="hidden"]'))) {
+        todoForm.removeChild(qs('input[type="hidden"]'));
+      }
+    });
+  }
+
   renderTodosList(project) {
     const markup = `
       <div class="accordion" id="todos-accordion">
@@ -14,15 +26,17 @@ export default class TodoView {
 
   bindAddTodo(handler) {
     $on(qs('.todo-form'), 'submit', e => {
-      e.preventDefault();
-      const projectId = qs('[data-project]').dataset.project;
-      const [title, description, dueDate, priority] = Array.from(e.target.elements).map(el => el.value);
+      if (!qs('.todo-form.edit')) {
+        e.preventDefault();
 
-      handler(projectId, title, description, dueDate, priority);
+        const projectId = qs('[data-project]').dataset.project;
+        const todo = Array.from(e.target.elements).map(el => el.value);
+        handler(projectId, todo);
 
-      $('#todo-modal').modal('hide');
-      e.target.reset();
+        $('#todo-modal').modal('hide');
+      }
     });
+
   }
 
   bindToggleTodo(handler) {
@@ -51,6 +65,45 @@ export default class TodoView {
     });
   }
 
+  bindClickEdit(handler) {
+    const todoForm = qs('.todo-form');
+    $on(qs('.todos'), 'click', e => {
+      if (e.target.matches('.btn-edit')) {
+        todoForm.classList.add('edit');
+        $('#todo-modal').on('shown.bs.modal', evt => {
+          if (todoForm.classList.contains('edit')) {
+            const { title, description, dueDate, priority } = handler(e.target.dataset.id);
+
+            const hiddenInput = document.createElement('input');
+            hiddenInput.id = e.target.dataset.id;
+            hiddenInput.type = 'hidden';
+            todoForm.appendChild(hiddenInput);
+
+            qs('#todo-title').value = title;
+            qs('#todo-description').value = description;
+            qs('#due-date').valueAsDate = new Date(dueDate);
+            qs('#priority').value = priority;
+          }
+        });
+      }
+    });
+  }
+
+  bindEditTodo(handler) {
+    $on(qs('.todo-form'), 'submit', e => {
+      e.preventDefault();
+
+      if (qs('.todo-form.edit')) {
+        const todoId = qs('.todo-form input[type="hidden"]').id;
+        const params = Array.from(e.target.elements).map(el => el.value);
+
+        handler(todoId, params);
+      }
+
+      $('#todo-modal').modal('hide');
+    });
+  }
+
   _renderTodoItem(todo, idx) {
     return `
       <div class="todo-item">
@@ -66,7 +119,7 @@ export default class TodoView {
               </div>
               <div class="col-4">
                 <button type="button" data-id="${todo.id}" class="btn btn-success btn-toggle">Done</button>
-                <button type="button" data-id="${todo.id}" class="btn btn-secondary btn-edit">Edit</button>
+                <button type="button" data-id="${todo.id}" data-toggle="modal" data-target="#todo-modal" class="btn btn-secondary btn-edit">Edit</button>
                 <button type="button" data-id="${todo.id}" class="btn btn-danger btn-remove">Remove</button>
               </div>
             </div>
@@ -97,6 +150,6 @@ export default class TodoView {
       className = 'badge-success';
     }
 
-    return `<span class="badge ${className}">${text}</span>`;
+    return `<span class="badge badge-pill ${className}">${text}</span>`;
   }
 }

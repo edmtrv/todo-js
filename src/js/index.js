@@ -23,6 +23,8 @@ const app = () => {
   tView.bindAddTodo(handleAddTodo);
   tView.bindToggleTodo(handleToggleTodo);
   tView.bindRemoveTodo(handleRemoveTodo);
+  tView.bindClickEdit(handleClickEdit);
+  tView.bindEditTodo(handleEditTodo);
 };
 
 const handleAddProject = (title, description) => {
@@ -37,8 +39,8 @@ const handleSelectProject = (id) => {
   tView.renderTodosList(activeProject);
 };
 
-const handleAddTodo = (projectId, title, description, dueDate, priority) => {
-  const todo = new Todo(title, description, dueDate, priority);
+const handleAddTodo = (projectId, todoParams) => {
+  const todo = new Todo(...todoParams);
   const project = state.projects.find(project => project.id === projectId);
   project.addTodo(todo);
   tView.renderTodosList(project);
@@ -50,8 +52,15 @@ const handleToggleTodo = (id) => {
   return todo.completed;
 };
 
-const handleEditTodo = (id) => {
+const handleClickEdit = (id) => {
+  const [todo, _] = _findTodoById(id);
+  return todo;
+};
 
+const handleEditTodo = (id, todoParams) => {
+  const [todo, project] = _findTodoById(id);
+  todo.editTodo(...todoParams);
+  tView.renderTodosList(project);
 };
 
 const handleRemoveTodo = (id) => {
