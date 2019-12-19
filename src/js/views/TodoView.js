@@ -43,15 +43,15 @@ export default class TodoView {
   bindToggleTodo(handler) {
     $on(qs('.todos'), 'click', e => {
       if (e.target.matches('.btn-toggle')) {
-        const completed = handler(e.target.dataset.id);
-        const todo = qs(`[data-todoid="${e.target.dataset.id}"]`);
-        if (completed) {
-          e.target.textContent = 'Undo';
-          todo.classList.toggle('disabled');
-        } else {
-          e.target.textContent = 'Done';
-          todo.classList.toggle('disabled');
-        }
+        handler(e.target.dataset.id);
+        // const todo = qs(`[data-todoid="${e.target.dataset.id}"]`);
+        // if (completed) {
+        //   e.target.textContent = 'Undo';
+        //   todo.classList.toggle('disabled');
+        // } else {
+        //   e.target.textContent = 'Done';
+        //   todo.classList.toggle('disabled');
+        // }
       }
     });
   }
@@ -113,13 +113,13 @@ export default class TodoView {
             <div class="row">
               <div class="col-8">
                 <h2 class="mb-0">
-                  <button class="btn btn-link collapsed" type="button" data-todoid="${todo.id}" data-toggle="collapse" data-target="#collapse-${idx}" aria-expand="true" aria-controls="collapse$-{idx}">
+                  <button class="btn btn-link collapsed ${todo.completed ? 'disabled' : ''}" type="button" data-todoid="${todo.id}" data-toggle="collapse" data-target="#collapse-${idx}" aria-expand="true" aria-controls="collapse$-{idx}">
                     ${todo.title} ${this._renderBadge(todo.priority)}
                   </button>
                 </h2>
               </div>
               <div class="col-4">
-                <button type="button" data-id="${todo.id}" class="btn btn-success btn-toggle">Done</button>
+                <button type="button" data-id="${todo.id}" class="btn btn-success btn-toggle">${todo.completed ? 'Undo' : 'Done'}</button>
                 <button type="button" data-id="${todo.id}" data-toggle="modal" data-target="#todo-modal" class="btn btn-secondary btn-edit">Edit</button>
                 <button type="button" data-id="${todo.id}" class="btn btn-danger btn-remove">Remove</button>
               </div>

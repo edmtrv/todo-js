@@ -62,10 +62,10 @@ const handleAddTodo = (projectId, todoParams) => {
 };
 
 const handleToggleTodo = (id) => {
-  const [todo, _] = _findTodoById(id);
+  const [todo, project] = _findTodoById(id);
   todo.toggleTodo();
+  todoView.renderTodosList(project);
   db.saveProjects(state.projects);
-  return todo.completed;
 };
 
 const handleClickEdit = (id) => {
