@@ -81,20 +81,22 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="todo-title">Title</label>
-              <input type="text" name="todo-title" class="form-control" id="todo-title" aria-describedby="todo-title">
+              <input type="text" name="todo-title" class="form-control" id="todo-title" aria-describedby="todo-title"
+                required>
             </div>
             <div class="form-group">
               <label for="todo-description">Description</label>
               <input type="text" name="todo-description" class="form-control" id="todo-description"
-                aria-describedby="todo-description">
+                aria-describedby="todo-description" required>
             </div>
             <div class="from-group">
               <label for="due-date">Due Date</label>
-              <input type="date" name="due-date" id="due-date" class="form-control" aria-describedby="todo-due-date">
+              <input type="datetime-local" name="due-date" id="due-date" class="form-control"
+                aria-describedby="todo-due-date" required>
             </div>
             <div class="form-group">
               <label for="priority">Priority</label>
-              <select name="priority" id="priority" class="form-control">
+              <select name="priority" id="priority" class="form-control" required>
                 <option value="">--Choose priority--</option>
                 <option value="high">High</option>
                 <option value="medium">Medium</option>
