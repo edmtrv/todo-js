@@ -19,7 +19,7 @@ const todoView = new TodoView();
 const app = () => {
 
   if (state.projects.length === 0) {
-    const defaultProject = new Project('Default Project', 'Random todos go here');
+    const defaultProject = new Project('Default Project', 'This is the default project which stores random todos.');
     state.projects.push(defaultProject);
   }
 

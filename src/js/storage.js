@@ -16,7 +16,6 @@ export default class Storage {
 
     const parsed = JSON.parse(data);
     const projects = [];
-    console.log(parsed);
     for (let project of parsed) {
       project.todos = project.todos.map(todo => {
         return new Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.completed);
