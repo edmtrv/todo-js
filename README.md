@@ -1,6 +1,6 @@
-## TodoJS - Simple Project Management App
+## TodoJS - A Simple Project Management App
 
-(View Live)[]
+[View Live](https://edmtrv.github.io/todo-js/)
 
 ### Features
 
@@ -11,5 +11,6 @@
 
 ### Technologies used
 
-- vanilla JavaScript
+- Vanilla JavaScript
+- Webpack
 - Bootstrap 4
