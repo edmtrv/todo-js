@@ -1,11 +1,11 @@
 import uniqid from 'uniqid';
 
 export default class Project {
-  constructor(title, description) {
+  constructor(title, description, todos = []) {
     this.id = uniqid();
     this.title = title;
     this.description = description;
-    this.todos = [];
+    this.todos = todos;
   }
 
   addTodo(todo) {

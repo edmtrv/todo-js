@@ -1,6 +1,6 @@
 import { qs, $on } from '../helpers';
 import $ from 'jquery';
-import { formatDistance, format } from 'date-fns';
+import { formatDistanceStrict, format } from 'date-fns';
 
 export default class TodoView {
   constructor() {
@@ -131,7 +131,7 @@ export default class TodoView {
             <div class="card-body">
               <p>${todo.description}</p>
               <p><span class="font-weight-bold">Due Date:</span> ${format(new Date(todo.dueDate), 'dd-MM-yyyy - p')}</p>
-              <p><span class="font-weight-bold">Time left:</span> ${formatDistance(new Date(todo.dueDate), new Date())}</p>
+              <p><span class="font-weight-bold">Time left:</span> ${formatDistanceStrict(new Date(todo.dueDate), new Date())}</p>
             </div>
           </div>
         </div>
