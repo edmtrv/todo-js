@@ -44,14 +44,6 @@ export default class TodoView {
     $on(qs('.todos'), 'click', e => {
       if (e.target.matches('.btn-toggle')) {
         handler(e.target.dataset.id);
-        // const todo = qs(`[data-todoid="${e.target.dataset.id}"]`);
-        // if (completed) {
-        //   e.target.textContent = 'Undo';
-        //   todo.classList.toggle('disabled');
-        // } else {
-        //   e.target.textContent = 'Done';
-        //   todo.classList.toggle('disabled');
-        // }
       }
     });
   }
