@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TodoJS - A Simple Project Manager</title>
+  <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-light navbar-expand-lg">
+    <a href="#" class="navbar-brand">TodoJs</a>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <section class="mb-4 d-flex justify-content-around project-list-titlebar">
+          <h4>All Projects</h4>
+          <button class="btn btn-primary btn-project-modal" data-toggle="modal" data-target="#project-modal"
+            type="button">New</button>
+        </section>
+        <section class="projects-list"></section>
+      </div>
+      <div class="col-sm-9">
+        <section class="mb-4 d-flex justify-content-around project-details"></section>
+        <section class="todos"></section>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Project modal -->
+  <div class="modal fade" id="project-modal" tabindex="-1" role="dialog" aria-labelledby="project-modal-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="project-modal-label">Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="project-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="project-title">Title</label>
+              <input type="text" name="project-title" class="form-control" id="project-title"
+                aria-describedby="project-title">
+            </div>
+            <div class="form-group">
+              <label for="project-description">Description</label>
+              <input type="text" name="project-description" class="form-control" id="project-description"
+                aria-describedby="project-description">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Todo modal -->
+  <div class="modal fade" id="todo-modal" tabindex="-1" role="dialog" aria-labelledby="todo-modal-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="todo-modal-label">Todo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="todo-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="todo-title">Title</label>
+              <input type="text" name="todo-title" class="form-control" id="todo-title" aria-describedby="todo-title"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="todo-description">Description</label>
+              <input type="text" name="todo-description" class="form-control" id="todo-description"
+                aria-describedby="todo-description" required>
+            </div>
+            <div class="from-group">
+              <label for="due-date">Due Date</label>
+              <input type="datetime-local" name="due-date" id="due-date" class="form-control"
+                aria-describedby="todo-due-date" required>
+            </div>
+            <div class="form-group">
+              <label for="priority">Priority</label>
+              <select name="priority" id="priority" class="form-control" required>
+                <option value="">--Choose priority--</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="bundle.js"></script></body>
+
+</html>
